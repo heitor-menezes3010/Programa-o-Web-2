@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD</title>
+
+  <!-- Guarda de acesso: roda ANTES da página aparecer.
+       Sem token no localStorage, volta para o login. -->
+  <script>
+    if (!localStorage.getItem('token')) {
+      window.location.replace('login.html');
+    }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span>Cadastro de Funcionários</span>
+      <div class="header-actions">
+        <span id="usuario-logado" class="usuario-logado"></span>
+        <button onclick="openModal()" id="new">Incluir</button>
+        <button onclick="logout()" id="btnSair">Sair</button>
+      </div>
+    </div>
+
+    <div class="divTable">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Função</th>
+            <th>Departamento</th>
+            <th>Salário</th>
+            <th>Admissão</th>
+            <th>Status</th>
+            <th class="acao">Editar</th>
+            <th class="acao">Excluir</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal-container">
+      <div class="modal">
+        <form id="form-func">
+          <label for="m-nome">Nome</label>
+          <input id="m-nome" type="text" required />
+
+          <label for="m-funcao">Função</label>
+          <input id="m-funcao" type="text" required />
+
+          <label for="m-salario">Salário</label>
+          <input id="m-salario" type="number" step="0.01" min="0" required />
+
+          <label for="m-email">E-mail</label>
+          <input id="m-email" type="email" />
+
+          <label for="m-admissao">Data de admissão</label>
+          <input id="m-admissao" type="date" />
+
+          <label for="m-departamento">Departamento</label>
+          <select id="m-departamento" required></select>
+
+          <label for="m-status">Status</label>
+          <select id="m-status">
+            <option value="Ativo">Ativo</option>
+            <option value="Inativo">Inativo</option>
+          </select>
+
+          <button type="submit" id="btnSalvar">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
